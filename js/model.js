@@ -83,7 +83,7 @@ function addSphere(color, x, z, y=0) {
   plot_grp.add( sphere );
   // model_entity.add(sphere);
   
-  console.log(x,y,z);
+  // console.log(x,y,z);
 }
 
 for(let i = 0; i < data.length; i++) { 
