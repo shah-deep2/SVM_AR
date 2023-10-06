@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>SVM Radial Kernel in AR</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="./library/svm.js"></script>
+		<script src="./imports/three.min.js"></script>
+    <script src="./imports/aframe.min.js"></script>
+    <script src="./imports/aframe-ar.js"></script>
+    <script src="./js/gesture_handler.js"></script>
+
+  </head>
+
+  <body>
+    <a-scene
+      id="scene"
+      arjs
+      embedded
+      renderer="logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false"
+      gesture-detector
+    >
+
+      <a-marker
+        id="markerA"
+        preset="custom"
+        type="pattern" 
+        url="markers/kanji.patt"
+        raycaster="objects: .clickable"
+        emitevents="true"
+        cursor="fuse: false; rayOrigin: mouse;"
+      >
+        <a-entity
+          id="model_entity"
+          class="clickable"
+          gesture-handler
+        >
+          <a-plane
+            id="svm_plane"
+            class="clickable"
+            plane-comp
+            plane-touch
+          >
+            
+          </a-plane>
+        </a-entity>
+      </a-marker>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+
+  <script src="./js/svm_train.js"></script>
+  <script src="./js/model.js"></script>
+  <script src="./js/ar_controls.js"></script>
+  <script src="./js/gesture_detector.js"></script>
+  <!-- <script src="./js/cursor.js" defer></script> -->
+</html>
