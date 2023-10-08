@@ -5,7 +5,7 @@ plot_grp.add(new THREE.AmbientLight(0xffffff, 0.5));
 // let axes = new THREE.AxesHelper(2);
 // scene.add(grid, axes);
 
-var graphGeom = new THREE.PlaneGeometry(10, 10, 50, 50);
+var graphGeom = new THREE.PlaneGeometry(10, 10, 40, 40);
 graphGeom.rotateX(Math.PI * -0.5);
 
 const count = graphGeom.attributes.position.count;
@@ -15,7 +15,7 @@ graphGeom.setAttribute('color', new THREE.BufferAttribute(new Float32Array(count
 const graph_colors = graphGeom.attributes.color;
 
 // console.log(graphGeom);
-let graphMat = new THREE.MeshBasicMaterial({side: THREE.DoubleSide, wireframe: false, transparent: true, opacity:0.8, vertexColors: true,});
+let graphMat = new THREE.MeshBasicMaterial({side: THREE.DoubleSide, wireframe: false, transparent: true, opacity:0.85, vertexColors: true,});
 
 var graph;
 
@@ -33,7 +33,7 @@ AFRAME.registerComponent("plane-comp", {
       generateModel();
 
       graph.name = "SVM_model";
-      // plot_grp.add(graph);
+      plot_grp.add(graph);
     })
   }
 })
@@ -76,7 +76,7 @@ function addSphere(color, x, z, y=0) {
   } else {
     color = 'rgb(180,100,100)';
   }
-  const geometry2 = new THREE.SphereGeometry( 0.085, 32, 16 ); 
+  const geometry2 = new THREE.SphereGeometry( 0.095, 32, 16 ); 
   const material2 = new THREE.MeshBasicMaterial( { color: color } ); 
   const sphere = new THREE.Mesh( geometry2, material2 ); 
   sphere.position.set(x, y, z);
@@ -95,7 +95,7 @@ for(let i = 0; i < data.length; i++) {
     // console.log(data[i], svm.marginOne(data[i]));
 }
 
-// plot_grp.scale.set(0.3, 0.3, 0.3);
+plot_grp.scale.set(0.3, 0.3, 0.3);
 // plot_grp.rotateX(Math.PI * -0.5);
 // plot_grp.rotateY(Math.PI * -0.5);
 
