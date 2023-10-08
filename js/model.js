@@ -96,7 +96,7 @@ for(let i = 0; i < data.length; i++) {
 }
 
 plot_grp.scale.set(0.3, 0.3, 0.3);
-// plot_grp.rotateX(Math.PI * -0.5);
-// plot_grp.rotateY(Math.PI * -0.5);
+plot_grp.rotateX(Math.PI * -0.5);
+plot_grp.rotateY(Math.PI * -0.5);
 
 
