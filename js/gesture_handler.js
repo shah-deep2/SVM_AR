@@ -80,7 +80,7 @@ AFRAME.registerComponent('plane-touch', {
         console.log(intersects);
 
         if(intersects) {
-            // addSphere('r', intersects.point.x, intersects.point.y, 2);
+            addSphere('r', intersects.point.x, intersects.point.y, 2);
         }
       }
     });
