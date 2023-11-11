@@ -5,7 +5,7 @@ plot_grp.add(new THREE.AmbientLight(0xffffff, 0.5));
 // let axes = new THREE.AxesHelper(2);
 // scene.add(grid, axes);
 
-var graphGeom = new THREE.PlaneGeometry(10, 10, 40, 40);
+var graphGeom = new THREE.PlaneGeometry(10, 10, 50, 50);
 graphGeom.rotateX(Math.PI * -0.5);
 
 const count = graphGeom.attributes.position.count;
@@ -70,33 +70,35 @@ function generateModel() {
 }
 
 
-function addSphere(color, x, z, y=0) {
+function addSphere(color, x, z, y=0, size=0.032) {
   if(color=='g'){
     color = 'rgb(100,180,100)';
   } else {
     color = 'rgb(180,100,100)';
   }
-  const geometry2 = new THREE.SphereGeometry( 0.095, 32, 16 ); 
+  const geometry2 = new THREE.SphereGeometry(size, 32, 16 ); 
   const material2 = new THREE.MeshBasicMaterial( { color: color } ); 
   const sphere = new THREE.Mesh( geometry2, material2 ); 
   sphere.position.set(x, y, z);
-  plot_grp.add( sphere );
-  // model_entity.add(sphere);
-  
-  // console.log(x,y,z);
+  // plot_grp.add( sphere );
+  scene.add(sphere);
+  console.log(sphere);
+  plot_grp.attach(sphere);
+  console.log(sphere);
+  console.log(x,y,z);
 }
 
 for(let i = 0; i < data.length; i++) { 
   if(labels[i]>0) 
-    addSphere('g', data[i][0], data[i][1], labels[i]*2);
+    addSphere('g', data[i][0], data[i][1], labels[i]*2, 0.096);
   else
-    addSphere('r', data[i][0], data[i][1], labels[i]*2);
+    addSphere('r', data[i][0], data[i][1], labels[i]*2, 0.096);
   
     // console.log(data[i], svm.marginOne(data[i]));
 }
 
-// plot_grp.scale.set(0.3, 0.3, 0.3);
-// plot_grp.rotateX(Math.PI * -0.5);
-// plot_grp.rotateY(Math.PI * -0.5);
+plot_grp.scale.set(0.3, 0.3, 0.3);
+plot_grp.rotateX(Math.PI * -0.5);
+plot_grp.rotateY(Math.PI * -0.5);
 
 

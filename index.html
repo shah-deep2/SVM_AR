@@ -11,8 +11,7 @@
 		<script src="./imports/three.min.js"></script>
     <script src="./imports/aframe.min.js"></script>
     <script src="./imports/aframe-ar.js"></script>
-    <script src="./js/gesture_handler.js"></script>
-
+    <script src="./js/gesture_detector.js"></script>
   </head>
 
   <body>
@@ -24,7 +23,6 @@
       vr-mode-ui="enabled: false"
       gesture-detector
     >
-
       <a-marker
         id="markerA"
         preset="custom"
@@ -34,6 +32,7 @@
         emitevents="true"
         cursor="fuse: false; rayOrigin: mouse;"
       >
+
         <a-entity
           id="model_entity"
           class="clickable"
@@ -53,10 +52,17 @@
       <a-entity camera></a-entity>
     </a-scene>
   </body>
-
-  <script src="./js/svm_train.js"></script>
-  <script src="./js/model.js"></script>
-  <script src="./js/ar_controls.js"></script>
-  <script src="./js/gesture_detector.js"></script>
-  <script src="./js/cursor.js" defer></script>
+  <footer>
+    <script>
+      var scene = document.getElementById("scene").object3D;
+      var model_entity = document.getElementById("model_entity").object3D;
+      var markerA = document.getElementById("markerA").object3D;
+    </script>
+  
+    <script src="./js/svm_train.js"></script>
+    <script src="./js/model.js"></script>
+    <script src="./js/ar_controls.js"></script>
+    <script src="./js/gesture_handler.js"></script>
+    <script src="./js/cursor.js" defer></script>
+  </footer>
 </html>

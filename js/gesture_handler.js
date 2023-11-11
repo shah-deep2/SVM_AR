@@ -72,15 +72,31 @@ AFRAME.registerComponent("gesture-handler", {
 AFRAME.registerComponent('plane-touch', {
   init: function () {
     var el = this.el;
-    // console.log(el);
+    console.log(el);
     el.addEventListener('click', (e) => {   
-      if (isMarkerVisible) {  
+      e.preventDefault();
+      if (isMarkerVisible && (e.target.id == 'svm_plane')) {  
         console.log(e);
         let intersects = e.detail.intersection;
         console.log(intersects);
+        console.log(e.target.id);
 
+        let px, py;
+        try {
+          px = intersects.point.x;
+          py = intersects.point.y;
+        } catch (error) {
+          console.log(error);
+        }
+
+        // console.log("Marker", document.getElementById("markerA").object3D.position);
+        // console.log("svm_plane", document.getElementById("svm_plane").object3D.position);
+        let zcor = document.getElementById("markerA").object3D.position.z;
+        // let local = document.getElementById("scene").object3D.worldToLocal(new THREE.Vector3(zcor, zcor, zcor));
+        // console.log(local);
         if(intersects) {
-            addSphere('r', intersects.point.x, intersects.point.y, 2);
+            // document.getElementById("yellow-sphere").setAttribute("position", {x: px, y: py, z: document.getElementById("markerA").object3D.position.z})
+            addSphere('r', px, zcor, py);
         }
       }
     });
