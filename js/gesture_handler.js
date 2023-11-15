@@ -1,7 +1,5 @@
 /* global AFRAME, THREE */
 
-var isMarkerVisible = false;
-
 AFRAME.registerComponent("gesture-handler", {
   schema: {
     enabled: { default: true },
@@ -28,7 +26,7 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   update: function () {
-    if (this.data.enabled) {
+    if (this.data.enabled && move_enable) {
       this.el.sceneEl.addEventListener("onefingermove", this.handleRotation);
       this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
     } else {
@@ -43,7 +41,7 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   handleRotation: function (event) {
-    if (isMarkerVisible) {
+    if (isMarkerVisible && move_enable) {
       this.el.object3D.rotation.y +=
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
@@ -52,7 +50,7 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   handleScale: function (event) {
-    if (isMarkerVisible) {
+    if (isMarkerVisible && move_enable) {
       this.scaleFactor *=
         1 + event.detail.spreadChange / event.detail.startSpread;
 
@@ -69,36 +67,10 @@ AFRAME.registerComponent("gesture-handler", {
 });
 
 
-AFRAME.registerComponent('plane-touch', {
-  init: function () {
-    var el = this.el;
-    console.log(el);
-    el.addEventListener('click', (e) => {   
-      e.preventDefault();
-      if (isMarkerVisible && (e.target.id == 'svm_plane')) {  
-        console.log(e);
-        let intersects = e.detail.intersection;
-        console.log(intersects);
-        console.log(e.target.id);
-
-        let px, py;
-        try {
-          px = intersects.point.x;
-          py = intersects.point.y;
-        } catch (error) {
-          console.log(error);
-        }
-
-        // console.log("Marker", document.getElementById("markerA").object3D.position);
-        // console.log("svm_plane", document.getElementById("svm_plane").object3D.position);
-        let zcor = document.getElementById("markerA").object3D.position.z;
-        // let local = document.getElementById("scene").object3D.worldToLocal(new THREE.Vector3(zcor, zcor, zcor));
-        // console.log(local);
-        if(intersects) {
-            // document.getElementById("yellow-sphere").setAttribute("position", {x: px, y: py, z: document.getElementById("markerA").object3D.position.z})
-            addSphere('r', px, zcor, py);
-        }
-      }
-    });
-  }
-});
+// AFRAME.registerComponent('plane-touch', {
+//   init: function () {
+//     var el = this.el;
+//     console.log(el);
+  
+//   }
+// });

@@ -20,7 +20,6 @@ body {
 .circle-button {
     border: none;
     color: white;
-    padding: 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -29,10 +28,17 @@ body {
     cursor: pointer;
 }
 
-.circle-button.green {
+.circle-button.green {    
+    padding: 11.5px 15px;
     background-color: #64c864;
 }
 
-.circle-button.red {
+.circle-button.red {    
+    padding: 11.5px 15px;
     background-color: #c86464;
+}
+
+.circle-button.grey {
+    padding: 10.5px 13px;
+    background-color: #abd9d7;
 }
