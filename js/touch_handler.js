@@ -1,5 +1,4 @@
 
-
 function addPoint(color) {
 
     if(color == 'red') {
@@ -29,16 +28,17 @@ function handlePointAdd(e)  {
 
             // console.log(intersects);
 
-            let px, py;
+            let px, py, pz;
             px = intersects.point.x;
             py = intersects.point.y;
+            pz = intersects.point.z;
 
             // console.log("Marker", document.getElementById("markerA").object3D.position);
             // console.log("svm_plane", document.getElementById("svm_plane").object3D.position);
-            let zcor = document.getElementById("markerA").object3D.position.z;
+            // let zcor = document.getElementById("markerA").object3D.position.z;
 
             if(intersects) {
-                addSphere(current_data_color, px, zcor, py);
+                addSphere(current_data_color, px, pz, py);
             }
         }
     } catch (error) {
