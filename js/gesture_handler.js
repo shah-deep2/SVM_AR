@@ -1,5 +1,3 @@
-/* global AFRAME, THREE */
-
 AFRAME.registerComponent("gesture-handler", {
   schema: {
     enabled: { default: true },
@@ -65,12 +63,3 @@ AFRAME.registerComponent("gesture-handler", {
     }
   },
 });
-
-
-// AFRAME.registerComponent('plane-touch', {
-//   init: function () {
-//     var el = this.el;
-//     console.log(el);
-  
-//   }
-// });
