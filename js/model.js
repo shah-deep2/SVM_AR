@@ -84,14 +84,11 @@ function addSphere(color, x, z, y=0, size=0.032) {
   const material2 = new THREE.MeshBasicMaterial( { color: color_rgb } ); 
   const sphere = new THREE.Mesh( geometry2, material2 ); 
   sphere.position.set(x, y, z);
-  // plot_grp.add( sphere );
+  
   scene.add(sphere);
-  // console.log(sphere);
-  plot_grp.attach(sphere);
 
+  plot_grp.attach(sphere);
   sphereList.push(sphere);
-  // console.log(sphere);
-  // console.log(x,y,z);
 
   if(Math.abs(sphere.position.y) != 2) {
     data.push([sphere.position.x, sphere.position.z]);
