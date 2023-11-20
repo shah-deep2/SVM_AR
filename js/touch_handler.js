@@ -38,7 +38,7 @@ function handlePointAdd(e)  {
             // let zcor = document.getElementById("markerA").object3D.position.z;
 
             if(intersects) {
-                addSphere(current_data_color, px, pz, py);
+                addSphere(current_data_color, px, py, pz);
             }
         }
     } catch (error) {

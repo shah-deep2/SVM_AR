@@ -70,14 +70,14 @@ function generateModel() {
 
 var sphereList = new Array();
 
-function addSphere(color, x, z, y=0, size=0.032) {
+function addSphere(color, x, y, z, size=0.032, user_added=true) {
   if(color=='g') {
-    var color_rgb = 'rgb(100,180,100)';
+      var color_rgb = 'rgb(100,180,100)';
   } else if(color=='r') {
-    var color_rgb = 'rgb(180,100,100)';
+      var color_rgb = 'rgb(180,100,100)';
   } else {
-    console.error("Color Error");
-    return
+      console.error("Color Error");
+      return
   }
 
   const geometry2 = new THREE.SphereGeometry(size, 32, 16 ); 
@@ -88,9 +88,8 @@ function addSphere(color, x, z, y=0, size=0.032) {
   scene.add(sphere);
 
   plot_grp.attach(sphere);
-  sphereList.push(sphere);
 
-  if(Math.abs(sphere.position.y) != 2) {
+  if(user_added) {
     data.push([sphere.position.x, sphere.position.z]);
     if(color=='g') {
         labels.push(1);
@@ -98,13 +97,23 @@ function addSphere(color, x, z, y=0, size=0.032) {
         labels.push(-1);
     }
   }
+  
+  sphereList.push(sphere);
+
+}
+
+function updateSpheres() {
+  sphereList.forEach(sphere => {
+    sphere.position.y = svm.marginOne([sphere.position.x, sphere.position.z]) * 2;
+  });
 }
 
 for(let i = 0; i < data.length; i++) { 
+  let y = svm.marginOne(data[i]) * 2;
   if(labels[i]>0) 
-    addSphere('g', data[i][0], data[i][1], labels[i]*2, 0.096);
+    addSphere('g', data[i][0], y, data[i][1], 0.096, false);
   else
-    addSphere('r', data[i][0], data[i][1], labels[i]*2, 0.096);
+    addSphere('r', data[i][0], y, data[i][1], 0.096, false);
   
     // console.log(data[i], svm.marginOne(data[i]));
 }

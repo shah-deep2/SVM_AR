@@ -5,4 +5,5 @@ model_entity.add(plot_grp);
 function reModel() {
     retrainSVM();
     generateModel();
+    updateSpheres();
 }
