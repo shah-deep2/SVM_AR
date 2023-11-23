@@ -13,7 +13,7 @@ var bind = function bind(fn, ctx /* , arg1, arg2 */) {
 /* * * * * * * * * * * * * * * * * * * * * *
    wait until the cursor is ready and accessible
 * * * * * * * * * * * * * * * * * * * * * * */
-var marker = document.querySelector("[cursor]");
+var marker = document.querySelector("#markerA[cursor]");
 var cursorComponent;
 console.log(marker.hasLoaded);
 
@@ -46,7 +46,7 @@ function setOnMouseMove() {
       var top;
 
       camera.parent.updateMatrixWorld();
-
+      
       // Calculate mouse position based on the canvas element
       if (evt.type === "touchmove" || evt.type === "touchstart") {
         // Track the first touch for simplicity.
