@@ -40,3 +40,7 @@ var svm = new svmjs.SVM();
 var rbfKernelSigma = 0.5;
 var svmC = 1.0;
 var trainstats;
+
+document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+});

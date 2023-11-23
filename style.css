@@ -5,6 +5,11 @@ body {
     overflow: hidden;
 }
 
+html, body {
+    touch-action: manipulation;
+    overscroll-behavior: none;
+}
+
 .button-container {
     position: fixed;
     bottom: 20px;
