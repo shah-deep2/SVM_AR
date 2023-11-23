@@ -7,8 +7,8 @@
 
 var N = 10; //number of data points
 var data = new Array(N);
-var labels= new Array(N);
-var svm= new svmjs.SVM();
+var labels = new Array(N);
+var svm = new svmjs.SVM();
 var rbfKernelSigma = 0.5;
 var svmC = 1.0;
 

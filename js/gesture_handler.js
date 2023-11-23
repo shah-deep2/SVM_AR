@@ -1,7 +1,3 @@
-/* global AFRAME, THREE */
-
-var isMarkerVisible = false;
-
 AFRAME.registerComponent("gesture-handler", {
   schema: {
     enabled: { default: true },
@@ -28,7 +24,7 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   update: function () {
-    if (this.data.enabled) {
+    if (this.data.enabled && move_enable) {
       this.el.sceneEl.addEventListener("onefingermove", this.handleRotation);
       this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
     } else {
@@ -43,7 +39,7 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   handleRotation: function (event) {
-    if (isMarkerVisible) {
+    if (isMarkerVisible && move_enable) {
       this.el.object3D.rotation.y +=
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
@@ -52,7 +48,7 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   handleScale: function (event) {
-    if (isMarkerVisible) {
+    if (isMarkerVisible && move_enable) {
       this.scaleFactor *=
         1 + event.detail.spreadChange / event.detail.startSpread;
 
@@ -66,23 +62,4 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
     }
   },
-});
-
-
-AFRAME.registerComponent('plane-touch', {
-  init: function () {
-    var el = this.el;
-    // console.log(el);
-    el.addEventListener('click', (e) => {   
-      if (isMarkerVisible) {  
-        console.log(e);
-        let intersects = e.detail.intersection;
-        console.log(intersects);
-
-        if(intersects) {
-            // addSphere('r', intersects.point.x, intersects.point.y, 2);
-        }
-      }
-    });
-  }
 });
