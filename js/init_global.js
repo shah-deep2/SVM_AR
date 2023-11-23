@@ -46,7 +46,7 @@ var trainstats;
  * Zoom & rotation handling
  */
 
-var rotationMultiplier = 1;
+var rotationMultiplier = -1;
 
 document.addEventListener('gesturestart', function (e) {
     e.preventDefault();
