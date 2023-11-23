@@ -1,13 +1,18 @@
 
 function addPoint(color) {
-
     if(color == 'red') {
+        greenBtnElem.classList.remove('highlight');
         red_btn = true;
         current_data_color = 'r';
-    } else if (color == 'green') {
+        redBtnElem.classList.add('highlight');
+    } 
+    else if (color == 'green') {
+        redBtnElem.classList.remove('highlight');
         green_btn = true;
         current_data_color = 'g';
-    } else {
+        greenBtnElem.classList.add('highlight');
+    } 
+    else {
         console.log("Wrong Color Error");
         return
     }
@@ -22,20 +27,12 @@ function handlePointAdd(e)  {
         e.preventDefault();
 
         if (isMarkerVisible && (e.target.id == 'svm_plane')) {  
-            // console.log(e);
 
             let intersects = e.detail.intersection;
-
-            // console.log(intersects);
-
             let px, py, pz;
             px = intersects.point.x;
             py = intersects.point.y;
             pz = intersects.point.z;
-
-            // console.log("Marker", document.getElementById("markerA").object3D.position);
-            // console.log("svm_plane", document.getElementById("svm_plane").object3D.position);
-            // let zcor = document.getElementById("markerA").object3D.position.z;
 
             if(intersects) {
                 addSphere(current_data_color, px, py, pz);
@@ -54,4 +51,6 @@ function endPointAdd() {
     current_data_color = null; 
     green_btn = false;
     red_btn = false;
+    greenBtnElem.classList.remove('highlight');
+    redBtnElem.classList.remove('highlight');
 }

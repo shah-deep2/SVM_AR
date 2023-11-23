@@ -19,10 +19,10 @@ let graphMat = new THREE.MeshBasicMaterial({side: THREE.DoubleSide, wireframe: f
 
 var graph;
 
+var sphereList = new Array();
+
 svm_plane.addEventListener("loaded", (e) => {
-  // graph = this.el.getObject3D('mesh');
   // var graphw = new THREE.Mesh(graphGeom, graphMat);
-  // console.log(graphw);
   graph = document.getElementById("svm_plane").getObject3D('mesh');
 
   graph.geometry = graphGeom;
@@ -34,14 +34,24 @@ svm_plane.addEventListener("loaded", (e) => {
   plot_grp.add(graph);
 });
 
+for(let i = 0; i < data.length; i++) { 
+  let y = svm.marginOne(data[i]) * 2;
+  if(labels[i]>0) 
+    addSphere('g', data[i][0], y, data[i][1], 0.096, false);
+  else
+    addSphere('r', data[i][0], y, data[i][1], 0.096, false);
+}
 
+plot_grp.scale.set(0.3, 0.3, 0.3);
+plot_grp.rotateX(Math.PI * -0.5);
+plot_grp.rotateY(Math.PI * -0.5);
 
 
 function generateModel() {
     
   // // f(x,z)
   let pos = graphGeom.attributes.position;
-  // console.log(pos);
+
   for(let i = 0; i < pos.count; i++){
     let x = pos.getX(i);
     let z = pos.getZ(i);
@@ -53,7 +63,6 @@ function generateModel() {
     }
     else {
       three_color.setHex(0xc86464);
-    //  console.log(x, z, dec);
     }
 
     graph_colors.setXYZ(i, three_color.r, three_color.g, three_color.b);
@@ -68,7 +77,6 @@ function generateModel() {
   graphGeom.computeVertexNormals(); 
 }
 
-var sphereList = new Array();
 
 function addSphere(color, x, y, z, size=0.032, user_added=true) {
   if(color=='g') {
@@ -96,6 +104,7 @@ function addSphere(color, x, y, z, size=0.032, user_added=true) {
     } else {
         labels.push(-1);
     }
+    N += 1;
   }
   
   sphereList.push(sphere);
@@ -107,19 +116,5 @@ function updateSpheres() {
     sphere.position.y = svm.marginOne([sphere.position.x, sphere.position.z]) * 2;
   });
 }
-
-for(let i = 0; i < data.length; i++) { 
-  let y = svm.marginOne(data[i]) * 2;
-  if(labels[i]>0) 
-    addSphere('g', data[i][0], y, data[i][1], 0.096, false);
-  else
-    addSphere('r', data[i][0], y, data[i][1], 0.096, false);
-  
-    // console.log(data[i], svm.marginOne(data[i]));
-}
-
-plot_grp.scale.set(0.3, 0.3, 0.3);
-plot_grp.rotateX(Math.PI * -0.5);
-plot_grp.rotateY(Math.PI * -0.5);
 
 
