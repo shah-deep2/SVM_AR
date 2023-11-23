@@ -41,6 +41,13 @@ var rbfKernelSigma = 0.5;
 var svmC = 1.0;
 var trainstats;
 
+
+/**
+ * Zoom & rotation handling
+ */
+
+var rotationMultiplier = 1;
+
 document.addEventListener('gesturestart', function (e) {
     e.preventDefault();
 });
@@ -52,5 +59,7 @@ window.mobileDeviceCheck = function() {
 };
 
 function desktopInv() {
-    return mobileDeviceCheck() ? 1 : -1;
+    rotationMultiplier = mobileDeviceCheck() ? 1 : -1;
 }
+
+// desktopInv();

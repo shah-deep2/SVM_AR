@@ -58,7 +58,7 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
       this.el.object3D.rotation.z +=
-        event.detail.positionChange.x * this.data.rotationFactor * desktopInv();
+        event.detail.positionChange.x * this.data.rotationFactor * rotationMultiplier;
     }
   },
 
@@ -91,7 +91,7 @@ AFRAME.registerComponent("gesture-handler", {
         let deltaY = event.clientY - this.lastMouseY;
 
         this.el.object3D.rotation.x += deltaY / 200;
-        this.el.object3D.rotation.z += deltaX / 200 * desktopInv();
+        this.el.object3D.rotation.z += deltaX / 200 * rotationMultiplier;
 
         this.lastMouseX = event.clientX;
         this.lastMouseY = event.clientY;
