@@ -6,3 +6,7 @@ Kanji Image Marker:
 
 
 ![Kanji Image](./assets/kanji_image_marker.png)
+
+
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
